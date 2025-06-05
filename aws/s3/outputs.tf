@@ -40,16 +40,22 @@ output "bucket_website_domain" {
 
 output "bucket_versioning_status" {
   description = "The versioning state of the bucket"
-  value       = aws_s3_bucket_versioning.this.versioning_configuration[0].status
+  value       = var.versioning_status
 }
 
-output "bucket_encryption" {
-  description = "The encryption configuration of the bucket"
-  value = {
-    sse_algorithm     = aws_s3_bucket_server_side_encryption_configuration.this.rule[0].apply_server_side_encryption_by_default.sse_algorithm
-    kms_master_key_id = aws_s3_bucket_server_side_encryption_configuration.this.rule[0].apply_server_side_encryption_by_default.kms_master_key_id
-    bucket_key_enabled = aws_s3_bucket_server_side_encryption_configuration.this.rule[0].bucket_key_enabled
-  }
+output "bucket_encryption_algorithm" {
+  description = "The encryption algorithm used for the bucket"
+  value       = var.sse_algorithm
+}
+
+output "bucket_kms_key_id" {
+  description = "The KMS key ID used for bucket encryption"
+  value       = var.kms_key_id
+}
+
+output "bucket_key_enabled" {
+  description = "Whether S3 Bucket Key is enabled for SSE-KMS"
+  value       = var.bucket_key_enabled
 }
 
 output "bucket_policy_attached" {

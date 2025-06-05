@@ -28,9 +28,19 @@ output "bucket_versioning_status" {
   value       = module.lab-s3.bucket_versioning_status
 }
 
-output "bucket_encryption" {
-  description = "The encryption configuration of the bucket"
-  value       = module.lab-s3.bucket_encryption
+output "bucket_encryption_algorithm" {
+  description = "The encryption algorithm used for the bucket"
+  value       = module.lab-s3.bucket_encryption_algorithm
+}
+
+output "bucket_kms_key_id" {
+  description = "The KMS key ID used for bucket encryption"
+  value       = module.lab-s3.bucket_kms_key_id
+}
+
+output "bucket_key_enabled" {
+  description = "Whether S3 Bucket Key is enabled for SSE-KMS"
+  value       = module.lab-s3.bucket_key_enabled
 }
 
 output "bucket_tags" {

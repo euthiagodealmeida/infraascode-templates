@@ -22,12 +22,6 @@ variable "bucket_key_enabled" {
   default     = false
 }
 
-variable "bucket_name" {
-  description = "The S3 bucket name"
-  type        = string
-  default     = ""
-}
-
 variable "public_read_policy" {
   description = "JSON policy document for public read access"
   type        = string

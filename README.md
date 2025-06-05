@@ -28,7 +28,7 @@ opentofu-templates/
 1. **Choose a module or example**
 2. **Copy the configuration:**
    ```bash
-   cp opentofu.tfvars.example opentofu.tfvars
+   cp terraform.tfvars.example terraform.tfvars
    ```
 3. **Edit with your values**
 4. **Deploy:**

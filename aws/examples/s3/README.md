@@ -12,7 +12,7 @@ This example demonstrates how to create a simple S3 bucket using the S3 module w
 
 1. **Copy the example configuration:**
    ```bash
-   cp opentofu.tfvars.example opentofu.tfvars
+   cp terraform.tfvars.example terraform.tfvars
    ```
 
 2. **Edit the configuration:**
@@ -34,7 +34,7 @@ This example demonstrates how to create a simple S3 bucket using the S3 module w
 ## Important Notes
 
 - **Bucket names must be globally unique** across all of AWS
-- **Change the bucket_name** in opentofu.tfvars before applying
+- **Change the bucket_name** in terraform.tfvars before applying
 - **Secure by default**: Public access is blocked, versioning enabled
 - **No files included**: This example only creates the bucket structure
 

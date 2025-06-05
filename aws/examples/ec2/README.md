@@ -14,10 +14,10 @@ This example demonstrates how to create a beautiful web server using the EC2 mod
 
 1. **Copy the example configuration:**
    ```bash
-   cp opentofu.tfvars.example opentofu.tfvars
+   cp terraform.tfvars.example terraform.tfvars
    ```
 
-2. **Edit `opentofu.tfvars` with your values:**
+2. **Edit `terraform.tfvars` with your values:**
    ```hcl
    key_name = "your-actual-key-pair"
    instance_name = "my-awesome-server"
@@ -112,7 +112,7 @@ simple-web-server/
 ├── variables.tf              # Input variables
 ├── outputs.tf               # Output values
 ├── user-data.sh             # Bootstrap script
-├── opentofu.tfvars.example # Example configuration
+├── terraform.tfvars.example # Example configuration
 └── README.md               # This file
 ```
 

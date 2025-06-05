@@ -100,7 +100,7 @@ module "app_server" {
 ## Quick Start
 
 1. Clone this module or copy the files
-2. Create a `opentofu.tfvars` file:
+2. Create a `terraform.tfvars` file:
    ```hcl
    name     = "my-server"
    key_name = "your-key-pair"
@@ -119,8 +119,8 @@ Check out the AWS examples directory for complete working examples:
 ### Simple Web Server
 ```bash
 cd ../examples/ec2-simple-web-server
-cp opentofu.tfvars.example opentofu.tfvars
-# Edit opentofu.tfvars with your key pair name
+cp terraform.tfvars.example terraform.tfvars
+# Edit terraform.tfvars with your key pair name
 tofu init && tofu apply
 ```
 
