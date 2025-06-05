@@ -1,6 +1,6 @@
 # AWS EC2 Instance Module
 
-Simple and reusable EC2 instance module for OpenTofu/Terraform.
+Simple and reusable EC2 instance module for OpenTofu.
 
 ## Features
 
@@ -93,14 +93,14 @@ module "app_server" {
 
 ## Requirements
 
-- OpenTofu/Terraform >= 1.0
+- OpenTofu >= 1.0
 - AWS Provider ~> 5.0
 - Configured AWS credentials
 
 ## Quick Start
 
 1. Clone this module or copy the files
-2. Create a `terraform.tfvars` file:
+2. Create a `opentofu.tfvars` file:
    ```hcl
    name     = "my-server"
    key_name = "your-key-pair"
@@ -119,8 +119,8 @@ Check out the AWS examples directory for complete working examples:
 ### Simple Web Server
 ```bash
 cd ../examples/ec2-simple-web-server
-cp terraform.tfvars.example terraform.tfvars
-# Edit terraform.tfvars with your key pair name
+cp opentofu.tfvars.example opentofu.tfvars
+# Edit opentofu.tfvars with your key pair name
 tofu init && tofu apply
 ```
 

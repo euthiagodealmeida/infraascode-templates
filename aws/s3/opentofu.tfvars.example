@@ -1,0 +1,33 @@
+# Basic S3 bucket configuration
+bucket_name      = "my-unique-bucket-name"
+force_destroy    = false
+versioning_status = "Enabled"
+
+# Encryption settings
+sse_algorithm        = "AES256"
+kms_key_id          = null
+bucket_key_enabled  = false
+
+# Public access settings (secure by default)
+block_public_acls       = true
+block_public_policy     = true
+ignore_public_acls      = true
+restrict_public_buckets = true
+
+# Bucket policy settings
+bucket_policy_count = 0
+public_read_policy  = ""
+
+# Website configuration
+website_config_count     = 0
+website_index_document   = "index.html"
+website_error_document   = "error.html"
+website_endpoint         = ""
+website_domain          = ""
+
+# Tags
+tags = {
+  Environment = "lab"
+  ManagedBy   = "terraform"
+  Project     = "s3-module"
+}
