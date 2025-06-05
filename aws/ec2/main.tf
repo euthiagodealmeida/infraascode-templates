@@ -8,12 +8,12 @@ data "aws_ami" "amazon_linux" {
   }
 }
 
-# Get default VPC
+# TODO: Make this configurable
 data "aws_vpc" "default" {
   default = true
 }
 
-# Get default subnet
+# TODO: Make this configurable
 data "aws_subnets" "default" {
   filter {
     name   = "vpc-id"
