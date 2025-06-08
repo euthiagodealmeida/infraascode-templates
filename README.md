@@ -1,11 +1,11 @@
-# 🚀 OpenTofu Templates
+# 🚀 Infrastruce as code Templates (Terraform/Opentofu)
 
-A collection of reusable OpenTofu modules for AWS infrastructure. Each module is designed as a "Lego piece" that can be used independently or combined to build complex infrastructure.
+A collection of reusable Infrastructure as Code modules for AWS infrastructure. Each module is designed as a "Lego piece" that can be used independently or combined to build complex infrastructure.
 
 ## 📁 Structure
 
 ```
-opentofu-templates/
+iac-templates/
 ├── aws/
 │   ├── ec2/                    # EC2 instance module
 │   ├── examples/               # Practical examples
@@ -28,10 +28,10 @@ opentofu-templates/
 1. **Choose a module or example**
 2. **Copy the configuration:**
    ```bash
-   cp terraform.tfvars.example terraform.tfvars
+   cp whatever.tfvars.example whatever.tfvars
    ```
 3. **Edit with your values**
-4. **Deploy:**
+4. **Deploy (using OpenTofu):**
    ```bash
    tofu init
    tofu plan
