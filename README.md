@@ -4,7 +4,8 @@ A collection of reusable Infrastructure as Code modules for AWS infrastructure. 
 
 ## 📋 TODO
 
-- 🏷️ **Consistent tagging**
+- **Refactor EC2 and S3 modules to use VPC organization structure before proceeding into new modules**
+- **Refactor tagging: it needs to be more consistent**
 
 ## 📁 Structure
 
@@ -16,7 +17,8 @@ terraform-templates/
 │   ├── vpc/                    # VPC networking module
 │   └── examples/               # Practical examples
 │       ├── ec2/                # EC2 web server example
-│       └── s3/                 # S3 bucket example
+│       ├── s3/                 # S3 bucket example
+│       └── vpc/                # VPC basic example
 └── README.md
 ```
 
@@ -31,6 +33,7 @@ terraform-templates/
 
 - **[EC2 Simple Web Server](./aws/examples/ec2/)** - Complete web server setup with Apache
 - **[S3 Basic Bucket](./aws/examples/s3/)** - Basic S3 bucket with secure defaults
+- **[VPC Basic Setup](./aws/examples/vpc/)** - VPC with auto-calculated subnets
 
 ## 🚀 Quick Start
 

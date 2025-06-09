@@ -1,6 +1,6 @@
 # AWS VPC Module
 
-A simple, configurable OpenTofu module for creating AWS VPCs with public and private subnets, internet gateway, and optional NAT gateway.
+A simple, configurable Terraform/OpenTofu module for creating AWS VPCs with public and private subnets, internet gateway, and optional NAT gateway.
 
 ## Features
 
