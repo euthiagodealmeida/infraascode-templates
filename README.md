@@ -45,3 +45,7 @@ iac-templates/
 - **Documented**: Comprehensive READMEs and examples
 - **Professional**: Follows industry best practices
 - **Flexible**: Easy to customize and extend
+
+## TODO
+
+- **Consistent tagging**
