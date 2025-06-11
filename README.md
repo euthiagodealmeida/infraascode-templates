@@ -4,8 +4,16 @@ A collection of reusable Infrastructure as Code modules for AWS infrastructure. 
 
 ## 📋 TODO
 
-- **Refactor EC2 and S3 modules to use VPC organization structure before proceeding into new modules**
 - **Refactor tagging: it needs to be more consistent**
+- **Create better tfvars.examples (multi examples)**
+
+## 🎯 Design Philosophy
+
+- **Modular**: Each component is independent and reusable
+- **Simple**: Clean, readable code with sensible defaults
+- **Documented**: Comprehensive READMEs and examples
+- **Professional**: Follows industry best practices
+- **Flexible**: Easy to customize and extend
 
 ## 📁 Structure
 
@@ -40,7 +48,7 @@ terraform-templates/
 1. **Choose a module or example**
 2. **Copy the configuration:**
    ```bash
-   cp whatever.tfvars.example whatever.tfvars
+   cp terraform.tfvars.example terraform.tfvars
    ```
 3. **Edit with your values**
 4. **Deploy (using OpenTofu):**
@@ -49,11 +57,3 @@ terraform-templates/
    tofu plan
    tofu apply
    ```
-
-## 🎯 Design Philosophy
-
-- **Modular**: Each component is independent and reusable
-- **Simple**: Clean, readable code with sensible defaults
-- **Documented**: Comprehensive READMEs and examples
-- **Professional**: Follows industry best practices
-- **Flexible**: Easy to customize and extend
