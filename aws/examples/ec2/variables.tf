@@ -13,12 +13,30 @@ variable "instance_name" {
 variable "instance_type" {
   description = "EC2 instance type"
   type        = string
-  default     = "t2.micro"
+  default     = "t3.micro"
 }
 
 variable "key_name" {
   description = "AWS key pair name for SSH access"
   type        = string
+}
+
+variable "associate_public_ip" {
+  description = "Associate public IP address"
+  type        = bool
+  default     = true
+}
+
+variable "volume_size" {
+  description = "EBS volume size in GB"
+  type        = number
+  default     = 20
+}
+
+variable "encrypted" {
+  description = "Enable EBS encryption"
+  type        = bool
+  default     = true
 }
 
 variable "tags" {
