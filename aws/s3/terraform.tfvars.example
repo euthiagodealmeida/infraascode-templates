@@ -1,0 +1,25 @@
+# Required
+bucket_name = ""
+
+# Optional
+force_destroy      = false
+enable_versioning = false
+
+# Optional
+# kms_key_id = "arn:aws:kms:region:account:key/key-id"
+bucket_key_enabled = true
+
+# Optional
+enable_public_read = false
+
+# Optional
+# website_config = {
+#   index_document = "index.html"
+#   error_document = "error.html"
+# }
+
+tags = {
+  Environment = "lab"
+  Project     = "lab-s3"
+  ManagedBy   = "opentofu"
+}

@@ -1,11 +1,16 @@
 variable "bucket_name" {
-  description = "The S3 bucket name"
+  description = "The name of the S3 bucket"
   type        = string
-  default     = ""
 }
 
 variable "force_destroy" {
   description = "Allow deletion of non-empty bucket"
+  type        = bool
+  default     = false
+}
+
+variable "enable_versioning" {
+  description = "Enable versioning on the S3 bucket"
   type        = bool
   default     = false
 }
@@ -19,92 +24,28 @@ variable "kms_key_id" {
 variable "bucket_key_enabled" {
   description = "Whether to use S3 Bucket Key for SSE-KMS"
   type        = bool
+  default     = true
+}
+
+variable "enable_public_read" {
+  description = "Enable public read access to the bucket"
+  type        = bool
   default     = false
 }
 
-variable "public_read_policy" {
-  description = "JSON policy document for public read access"
-  type        = string
-  default     = ""
-}
-
-variable "block_public_acls" {
-  description = "Whether to block public ACLs"
-  type        = bool
-  default     = true
-}
-
-variable "block_public_policy" {
-  description = "Whether to block public bucket policies"
-  type        = bool
-  default     = true
-}
-
-variable "ignore_public_acls" {
-  description = "Whether to ignore public ACLs"
-  type        = bool
-  default     = true
-}
-
-variable "restrict_public_buckets" {
-  description = "Whether to restrict public bucket policies"
-  type        = bool
-  default     = true
-}
-
-variable "versioning_status" {
-  description = "Versioning status for the S3 bucket"
-  type        = string
-  default     = "Suspended"
-}
-
-variable "sse_algorithm" {
-  description = "Server-side encryption algorithm"
-  type        = string
-  default     = "AES256"
-}
-
-variable "bucket_policy_count" {
-  description = "Number of bucket policies to create (0 or 1)"
-  type        = number
-  default     = 0
-}
-
-variable "website_config_count" {
-  description = "Number of website configurations to create (0 or 1)"
-  type        = number
-  default     = 0
-}
-
-variable "website_index_document" {
-  description = "Index document for website configuration"
-  type        = string
-  default     = "index.html"
-}
-
-variable "website_error_document" {
-  description = "Error document for website configuration"
-  type        = string
-  default     = "error.html"
-}
-
-variable "website_endpoint" {
-  description = "Website endpoint output value"
-  type        = string
-  default     = ""
-}
-
-variable "website_domain" {
-  description = "Website domain output value"
-  type        = string
-  default     = ""
+variable "website_config" {
+  description = "Website configuration for the S3 bucket"
+  type = object({
+    index_document = string
+    error_document = string
+  })
+  default = null
 }
 
 variable "tags" {
-  description = "Tags to apply to resources"
+  description = "Tags to apply to the S3 bucket"
   type        = map(string)
   default = {
-    Environment = "lab"
-    ManagedBy   = "terraform"
+    ManagedBy = "terraform"
   }
 }
