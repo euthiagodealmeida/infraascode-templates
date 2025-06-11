@@ -165,17 +165,9 @@ This module creates:
 6. **Route Tables** with appropriate routes
 7. **Default Security Group** (locked down)
 
-## Cost Considerations
-
-- **NAT Gateway**: Costs ~$45/month per gateway plus data transfer
-- **Elastic IPs**: Free when attached to running instances
-- **VPC, Subnets, Route Tables, IGW**: Free
-
-Set `enable_nat_gateway = false` for cost-effective development environments.
-
 ## Requirements
 
 | Name | Version |
 |------|---------|
-| opentofu | >= 1.6 |
+| terraform/opentofu | >= 1.0 |
 | aws | >= 5.0 |

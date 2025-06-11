@@ -1,3 +1,5 @@
+# Copy this file to terraform.tfvars and update with your values
+
 # Required
 bucket_name = ""
 

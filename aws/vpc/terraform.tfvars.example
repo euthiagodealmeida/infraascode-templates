@@ -1,18 +1,26 @@
-vpc_name             = "lab-vpc"
-vpc_cidr             = "10.0.0.0/16"
+# Copy this file to terraform.tfvars and update with your values
+
+# Required
+vpc_name = "lab-vpc"
+vpc_cidr = "10.0.0.0/16"
+
+# Optional
 enable_dns_hostnames = true
 enable_dns_support   = true
 
-# Leave empty to use all available AZs in the region
+# Optional
 availability_zones = []
 
-# Number of subnets to create (CIDRs calculated automatically)
+# Optional
 public_subnet_count  = 2
 private_subnet_count = 2
-subnet_cidr_bits     = 8  # Creates /24 subnets from /16 VPC
+subnet_cidr_bits     = 8
 
+# Optional
 enable_nat_gateway        = false
 single_nat_gateway        = true
+
+# Optional
 map_public_ip_on_launch   = true
 
 tags = {
