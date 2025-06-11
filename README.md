@@ -1,16 +1,24 @@
-# 🚀 OpenTofu Templates
+# 🚀 Infrastructure as Code Templates (Terraform/OpenTofu)
 
-A collection of reusable OpenTofu modules for AWS infrastructure. Each module is designed as a "Lego piece" that can be used independently or combined to build complex infrastructure.
+A collection of reusable Infrastructure as Code modules for AWS infrastructure. Each module is designed as a "Lego piece" that can be used independently or combined to build complex infrastructure.
+
+## 📋 TODO
+
+- **Refactor EC2 and S3 modules to use VPC organization structure before proceeding into new modules**
+- **Refactor tagging: it needs to be more consistent**
 
 ## 📁 Structure
 
 ```
-opentofu-templates/
+terraform-templates/
 ├── aws/
 │   ├── ec2/                    # EC2 instance module
-│   ├── examples/               # Practical examples
-│   │   └── ec2-simple-web-server/
-│   └── [future modules]/      # VPC, RDS, etc.
+│   ├── s3/                     # S3 bucket module
+│   ├── vpc/                    # VPC networking module
+│   └── examples/               # Practical examples
+│       ├── ec2/                # EC2 web server example
+│       ├── s3/                 # S3 bucket example
+│       └── vpc/                # VPC basic example
 └── README.md
 ```
 
@@ -18,20 +26,24 @@ opentofu-templates/
 
 ### AWS Modules
 - **[EC2](./aws/ec2/)** - Simple, configurable EC2 instances with security groups
+- **[S3](./aws/s3/)** - S3 buckets with encryption and security defaults
+- **[VPC](./aws/vpc/)** - VPC with auto-calculated subnets and NAT gateway support
 
 ## 📚 Examples
 
-- **[EC2 Simple Web Server](./aws/examples/ec2-simple-web-server/)** - Complete web server setup with Apache
+- **[EC2 Simple Web Server](./aws/examples/ec2/)** - Complete web server setup with Apache
+- **[S3 Basic Bucket](./aws/examples/s3/)** - Basic S3 bucket with secure defaults
+- **[VPC Basic Setup](./aws/examples/vpc/)** - VPC with auto-calculated subnets
 
 ## 🚀 Quick Start
 
 1. **Choose a module or example**
 2. **Copy the configuration:**
    ```bash
-   cp terraform.tfvars.example terraform.tfvars
+   cp whatever.tfvars.example whatever.tfvars
    ```
 3. **Edit with your values**
-4. **Deploy:**
+4. **Deploy (using OpenTofu):**
    ```bash
    tofu init
    tofu plan

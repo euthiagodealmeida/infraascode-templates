@@ -1,3 +1,9 @@
+variable "aws_region" {
+  description = "AWS region"
+  type        = string
+  default     = "sa-east-1" # São Paulo region
+}
+
 variable "vpc_name" {
   description = "Name for the VPC"
   type        = string
@@ -35,13 +41,13 @@ variable "public_subnet_count" {
 }
 
 variable "private_subnet_count" {
-  description = "Number of private subnets to create"  
+  description = "Number of private subnets to create"
   type        = number
   default     = 2
 }
 
 variable "subnet_cidr_bits" {
-  description = "Number of subnet bits for the CIDR. For example, specifying a value 8 for a /16 VPC creates subnets with /24"
+  description = "Number of subnet bits for the CIDR"
   type        = number
   default     = 8
 }
@@ -68,8 +74,8 @@ variable "tags" {
   description = "Tags to apply to resources"
   type        = map(string)
   default = {
-    Project     = "vpc-setup"
     Environment = "lab"
     ManagedBy   = "opentofu"
+    Project     = "lab-vpc"
   }
 }
