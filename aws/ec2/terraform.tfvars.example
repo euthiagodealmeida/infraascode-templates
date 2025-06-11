@@ -1,0 +1,29 @@
+# Copy this file to terraform.tfvars and update with your values
+
+# Required
+# key_name = "my-key-pair"
+
+# Instance
+name          = "my-ec2-instance"
+instance_type = "t3.micro"      # Free tier eligible
+
+# Optional - AMI
+# ami_id = "ami-12345678"
+
+# Network
+associate_public_ip = true
+
+# Storage
+volume_type = "gp3"
+volume_size = 20
+encrypted   = true
+
+# Optional
+# user_data = ""
+
+tags = {
+  Environment = "lab"
+  Project     = "my-project"
+  ManagedBy   = "opentofu"
+  Owner       = "your-name"
+}

@@ -1,5 +1,5 @@
 output "bucket_id" {
-  description = "The name/ID of the bucket"
+  description = "The ID of the bucket"
   value       = aws_s3_bucket.this.id
 }
 
@@ -28,47 +28,33 @@ output "bucket_region" {
   value       = aws_s3_bucket.this.region
 }
 
+# Website Configuration
 output "bucket_website_endpoint" {
   description = "The website endpoint, if the bucket is configured with a website"
-  value       = var.website_endpoint
+  value       = var.website_config != null ? aws_s3_bucket_website_configuration.this[0].website_endpoint : null
 }
 
 output "bucket_website_domain" {
-  description = "The domain of the website endpoint"
-  value       = var.website_domain
+  description = "The domain of the website endpoint, if the bucket is configured with a website"
+  value       = var.website_config != null ? aws_s3_bucket_website_configuration.this[0].website_domain : null
 }
 
-output "bucket_versioning_status" {
-  description = "The versioning state of the bucket"
-  value       = var.versioning_status
+output "bucket_versioning_enabled" {
+  description = "Whether versioning is enabled on the bucket"
+  value       = var.enable_versioning
 }
 
-output "bucket_encryption_algorithm" {
-  description = "The encryption algorithm used for the bucket"
-  value       = var.sse_algorithm
-}
-
-output "bucket_kms_key_id" {
-  description = "The KMS key ID used for bucket encryption"
-  value       = var.kms_key_id
-}
-
-output "bucket_key_enabled" {
-  description = "Whether S3 Bucket Key is enabled for SSE-KMS"
-  value       = var.bucket_key_enabled
-}
-
-output "bucket_policy_attached" {
-  description = "Whether a bucket policy is attached"
-  value       = var.bucket_policy_count > 0
+output "bucket_public_read_enabled" {
+  description = "Whether public read access is enabled"
+  value       = var.enable_public_read
 }
 
 output "bucket_website_enabled" {
   description = "Whether website configuration is enabled"
-  value       = var.website_config_count > 0
+  value       = var.website_config != null
 }
 
-output "bucket_tags" {
-  description = "All tags applied to the bucket"
-  value       = var.tags
+output "bucket_kms_encrypted" {
+  description = "Whether the bucket uses KMS encryption"
+  value       = var.kms_key_id != null
 }

@@ -1,25 +1,24 @@
-# AWS S3 OpenTofu Module
+# AWS S3 Module
 
-A simple, configurable OpenTofu module for creating AWS S3 buckets with sensible defaults and optional features.
+A simple, configurable S3 bucket module designed as a reusable "Lego piece" for AWS infrastructure.
 
-## Features
+## ✨ Features
 
-- ✅ **Secure by default**: Encryption enabled, public access blocked
-- ✅ **Unique naming**: Automatic random suffix for bucket names
-- ✅ **Configurable**: Easy to customize for different use cases
-- ✅ **Website hosting**: Optional static website configuration
-- ✅ **Public access**: Optional public read access with proper policies
-- ✅ **Tagging**: Consistent resource tagging
+- 🔐 **Secure by default** - AES256 encryption enabled, public access blocked
+- 📦 **Optional versioning** - Enable/disable bucket versioning with boolean flag
+- 🔑 **KMS encryption support** - Optional KMS key encryption
+- 🌍 **Public read access** - Optional public bucket configuration
+- 🌐 **Static website hosting** - Optional website configuration with object
+- 🏷️ **Consistent tagging** - Merge custom tags with defaults
 
-## Usage
+## 🚀 Usage
 
-### Basic S3 Bucket
-
+### Basic Private Bucket
 ```hcl
-module "s3_bucket" {
-  source = "../aws/s3"
-
-  name = "my-project-bucket"
+module "private_bucket" {
+  source = "../s3"
+  
+  bucket_name = "my-private-bucket-2025"
   
   tags = {
     Environment = "production"
@@ -28,13 +27,28 @@ module "s3_bucket" {
 }
 ```
 
-### S3 Bucket for Static Website
+### Versioned Bucket with KMS
+```hcl
+module "versioned_bucket" {
+  source = "../s3"
+  
+  bucket_name       = "my-versioned-bucket-2025"
+  enable_versioning = true
+  kms_key_id        = "arn:aws:kms:region:account:key/key-id"
+  
+  tags = {
+    Environment = "production"
+    Project     = "my-app"
+  }
+}
+```
 
+### Public Website Bucket
 ```hcl
 module "website_bucket" {
-  source = "../aws/s3"
-
-  name               = "my-website"
+  source = "../s3"
+  
+  bucket_name        = "my-website-bucket-2025"
   enable_public_read = true
   
   website_config = {
@@ -44,64 +58,50 @@ module "website_bucket" {
   
   tags = {
     Environment = "production"
-    Type        = "website"
+    Project     = "my-website"
   }
 }
 ```
 
-### S3 Bucket with KMS Encryption
-
-```hcl
-module "secure_bucket" {
-  source = "../aws/s3"
-
-  name               = "secure-data"
-  versioning_enabled = true
-  kms_key_id         = "arn:aws:kms:us-west-2:123456789012:key/12345678-1234-1234-1234-123456789012"
-  
-  tags = {
-    Environment = "production"
-    Security    = "high"
-  }
-}
-```
-
-## Inputs
+## 📋 Variables
 
 | Name | Description | Type | Default | Required |
-|------|-------------|------|---------|:--------:|
-| name | Base name for the S3 bucket | `string` | `"s3-bucket"` | no |
-| bucket_name_override | Override bucket name completely | `string` | `null` | no |
+|------|-------------|------|---------|----------|
+| bucket_name | The name of the S3 bucket | `string` | - | yes |
 | force_destroy | Allow deletion of non-empty bucket | `bool` | `false` | no |
-| versioning_enabled | Enable versioning for the S3 bucket | `bool` | `false` | no |
-| kms_key_id | AWS KMS key ID for encryption | `string` | `null` | no |
-| bucket_key_enabled | Use S3 Bucket Key for SSE-KMS | `bool` | `true` | no |
-| enable_public_read | Enable public read access | `bool` | `false` | no |
-| website_config | Website configuration | `object({...})` | `null` | no |
-| tags | Tags to apply to resources | `map(string)` | `{...}` | no |
+| enable_versioning | Enable versioning on the S3 bucket | `bool` | `false` | no |
+| kms_key_id | The AWS KMS key ID for encryption | `string` | `null` | no |
+| bucket_key_enabled | Whether to use S3 Bucket Key for SSE-KMS | `bool` | `true` | no |
+| enable_public_read | Enable public read access to the bucket | `bool` | `false` | no |
+| website_config | Website configuration object | `object({...})` | `null` | no |
+| tags | Tags to apply to the S3 bucket | `map(string)` | `{ManagedBy="terraform"}` | no |
 
-## Outputs
+## 📤 Outputs
 
 | Name | Description |
 |------|-------------|
-| bucket_id | The name/ID of the bucket |
+| bucket_id | The ID of the bucket |
 | bucket_arn | The ARN of the bucket |
 | bucket_domain_name | The bucket domain name |
 | bucket_regional_domain_name | The bucket region-specific domain name |
 | bucket_website_endpoint | The website endpoint (if configured) |
 | bucket_website_domain | The domain of the website endpoint (if configured) |
+| bucket_versioning_enabled | Whether versioning is enabled |
+| bucket_public_read_enabled | Whether public read access is enabled |
+| bucket_website_enabled | Whether website configuration is enabled |
+| bucket_kms_encrypted | Whether the bucket uses KMS encryption |
 
-## Examples
+## 🔒 Security
 
-For complete examples, see the `examples/` directory:
+- **Encryption enabled by default** using AES256
+- **Public access blocked by default** 
+- **Versioning optional** for data protection
+- **KMS encryption support** for enhanced security
+- **Explicit public access** - must be explicitly enabled
 
-- [Basic S3 bucket](../examples/s3-basic/)
-- [Static website](../examples/s3-website/)
-
-## Requirements
+## 📝 Requirements
 
 | Name | Version |
 |------|---------|
-| opentofu | >= 1.6 |
-| aws | >= 5.0 |
-| random | >= 3.1 |
+| terraform/opentofu | >= 1.0 |
+| aws | ~> 5.0 |

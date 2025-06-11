@@ -27,3 +27,38 @@ output "availability_zone" {
   description = "Availability zone"
   value       = aws_instance.this.availability_zone
 }
+
+output "subnet_id" {
+  description = "Subnet ID where the instance is deployed"
+  value       = aws_instance.this.subnet_id
+}
+
+output "vpc_id" {
+  description = "VPC ID where the instance is deployed"
+  value       = data.aws_vpc.default.id
+}
+
+output "ami_id" {
+  description = "AMI ID used for the instance"
+  value       = aws_instance.this.ami
+}
+
+output "instance_type" {
+  description = "Instance type"
+  value       = aws_instance.this.instance_type
+}
+
+output "key_name" {
+  description = "Key pair name used for SSH access"
+  value       = aws_instance.this.key_name
+}
+
+output "encrypted" {
+  description = "Whether EBS encryption is enabled"
+  value       = var.encrypted
+}
+
+output "associate_public_ip" {
+  description = "Whether public IP is associated"
+  value       = var.associate_public_ip
+}
