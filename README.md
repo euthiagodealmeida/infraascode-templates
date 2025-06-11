@@ -6,6 +6,7 @@ A collection of reusable Infrastructure as Code modules for AWS infrastructure. 
 
 - **Refactor tagging: it needs to be more consistent**
 - **Create better tfvars.examples (multi examples)**
+- **Create a multi module (ec2+vpc) exameple**
 
 ## 🎯 Design Philosophy
 
