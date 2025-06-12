@@ -1,0 +1,18 @@
+# Copy this file to terraform.tfvars and update with your values
+
+table_name = "terraform-state-lock"
+
+# Optional
+# deletion_protection_enabled = false
+
+# Optional
+# billing_mode = "PROVISIONED"
+# read_capacity = 5
+# write_capacity = 5
+
+# Optional
+tags = {
+  Environment = "lab"
+  Project     = "terraform-state-locking"
+  ManagedBy   = "opentofu"
+}
