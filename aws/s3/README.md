@@ -16,7 +16,7 @@ A simple, configurable S3 bucket module designed as a reusable "Lego piece" for 
 ### Basic Private Bucket
 ```hcl
 module "private_bucket" {
-  source = "../s3"
+  source = "../../aws/s3"
   
   bucket_name = "my-private-bucket-2025"
   
@@ -30,7 +30,7 @@ module "private_bucket" {
 ### Versioned Bucket with KMS
 ```hcl
 module "versioned_bucket" {
-  source = "../s3"
+  source = "../../aws/s3"
   
   bucket_name       = "my-versioned-bucket-2025"
   enable_versioning = true
@@ -46,7 +46,7 @@ module "versioned_bucket" {
 ### Public Website Bucket
 ```hcl
 module "website_bucket" {
-  source = "../s3"
+  source = "../../aws/s3"
   
   bucket_name        = "my-website-bucket-2025"
   enable_public_read = true

@@ -30,7 +30,7 @@ aws/ec2/
 ### Basic Instance
 ```hcl
 module "web_server" {
-  source = "../ec2"
+  source = "../../aws/ec2"
   
   name         = "my-web-server"
   instance_type = "t3.micro"
@@ -46,7 +46,7 @@ module "web_server" {
 ### Custom Storage Instance
 ```hcl
 module "app_server" {
-  source = "../ec2"
+  source = "../../aws/ec2"
   
   name                = "app-server"
   instance_type       = "t3.small"

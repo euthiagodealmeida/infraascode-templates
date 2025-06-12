@@ -19,7 +19,7 @@ A simple, configurable VPC module for creating AWS VPCs with public and private 
 
 ```hcl
 module "vpc" {
-  source = "../aws/vpc"
+  source = "../../aws/vpc"
 
   vpc_name = "my-app-vpc"
   vpc_cidr = "10.0.0.0/16"
@@ -39,7 +39,7 @@ module "vpc" {
 
 ```hcl
 module "vpc" {
-  source = "../aws/vpc"
+  source = "../../aws/vpc"
 
   vpc_name = "large-vpc"
   vpc_cidr = "10.0.0.0/16"

@@ -17,7 +17,7 @@ This module creates a simple, production-ready DynamoDB table, specifically opti
 
 ```hcl
 module "terraform_state_lock" {
-  source = "../dynamodb"
+  source = "../../aws/dynamodb"
   
   table_name = "terraform-state-lock"
 }
@@ -27,7 +27,7 @@ module "terraform_state_lock" {
 
 ```hcl
 module "user_sessions" {
-  source = "../dynamodb"
+  source = "../../aws/dynamodb"
   
   table_name = "user-sessions"
   hash_key   = "userId"
@@ -44,7 +44,7 @@ module "user_sessions" {
 
 ```hcl
 module "app_table" {
-  source = "../dynamodb"
+  source = "../../aws/dynamodb"
   
   table_name     = "high-traffic-table"
   billing_mode   = "PROVISIONED"
