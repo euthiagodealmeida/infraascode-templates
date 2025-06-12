@@ -1,0 +1,1 @@
+# TODO: Write lifecycle policy for ECR repositories
