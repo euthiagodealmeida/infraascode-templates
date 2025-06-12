@@ -1,0 +1,18 @@
+# Copy this file to terraform.tfvars and update with your values
+
+# Required
+repository_name = "go-hello-api"
+
+# Optional
+force_delete = true  # Allows deletion even with images (good for dev)
+# image_tag_mutability = "IMMUTABLE"  # Prevent tag overwrites
+# force_delete = false  # Protect against accidental deletion
+# max_image_count = 20  # Keep more images for rollback
+# encryption_type = "KMS"  # Use KMS encryption for compliance
+# kms_key_id = "alias/ecr-key"  # Your KMS key
+
+tags = {
+  Environment = "lab"
+  Project     = "go-api"
+  Owner       = "euthiagodealmeida"
+}
