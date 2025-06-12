@@ -45,20 +45,21 @@ variable "enable_lifecycle_policy" {
   default     = true
 }
 
-variable "max_image_count" {
-  description = "Maximum number of tagged images to keep"
-  type        = number
-  default     = 10
-}
-
-variable "untagged_image_days" {
-  description = "Number of days to keep untagged images"
-  type        = number
-  default     = 1
-}
-
 variable "tags" {
   description = "Tags to apply to the ECR repository"
   type        = map(string)
   default     = {}
+}
+
+# Permissions-related variables (optional - for advanced usage)
+variable "enable_repository_policy" {
+  description = "Enable repository permissions for cross-account or service access"
+  type        = bool
+  default     = false
+}
+
+variable "allowed_principals" {
+  description = "List of AWS principals (account IDs, ARNs) allowed to access the repository"
+  type        = list(string)
+  default     = []
 }

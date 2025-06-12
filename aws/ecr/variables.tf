@@ -54,3 +54,22 @@ variable "tags" {
   type        = map(string)
   default     = {}
 }
+
+# Permissions
+variable "enable_repository_policy" {
+  description = "Enable repository permissions for cross-account or service access"
+  type        = bool
+  default     = false
+}
+
+variable "repository_policy" {
+  description = "Custom repository permission policy JSON. If not provided, a default policy will be used"
+  type        = string
+  default     = null
+}
+
+variable "allowed_principals" {
+  description = "List of AWS principals (account IDs, ARNs) allowed to access the repository"
+  type        = list(string)
+  default     = []
+}

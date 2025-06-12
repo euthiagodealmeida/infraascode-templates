@@ -23,11 +23,13 @@ terraform-templates/
 ├── aws/
 │   ├── dynamodb/               # DynamoDB table module
 │   ├── ec2/                    # EC2 instance module
+│   ├── ecr/                    # ECR container registry module
 │   ├── s3/                     # S3 bucket module
 │   └── vpc/                    # VPC networking module
 ├── examples/                   # Practical examples
 │   ├── dynamodb/               # DynamoDB state lock example
 │   ├── ec2/                    # EC2 web server example
+│   ├── ecr/                    # ECR container registry example
 │   ├── s3/                     # S3 bucket example
 │   └── vpc/                    # VPC basic example
 └── README.md
@@ -36,15 +38,17 @@ terraform-templates/
 ## 🧩 Modules
 
 ### AWS Modules
-- **[DynamoDB](./aws/dynamodb/)** - Simple, configurable DynamoDB tables
+- **[DynamoDB](./aws/dynamodb/)** - Simple, configurable DynamoDB tables for state locking
 - **[EC2](./aws/ec2/)** - Simple, configurable EC2 instances with security groups
+- **[ECR](./aws/ecr/)** - Container registry for Docker images with lifecycle management
 - **[S3](./aws/s3/)** - S3 buckets with encryption and security defaults
 - **[VPC](./aws/vpc/)** - VPC with auto-calculated subnets and NAT gateway support
 
 ## 📚 Examples
 
-- **[DynamoDB Table](./examples/dynamodb/)** - Simple DynamoDB table (could be used for state locking)
+- **[DynamoDB State Lock](./examples/dynamodb/)** - Simple, configurable DynamoDB tables for state locking
 - **[EC2 Simple Web Server](./examples/ec2/)** - Complete web server setup with Apache
+- **[ECR Container Registry](./examples/ecr/)** - Docker image registry for containerized applications
 - **[S3 Basic Bucket](./examples/s3/)** - Basic S3 bucket with secure defaults
 - **[VPC Basic Setup](./examples/vpc/)** - VPC with auto-calculated subnets
 

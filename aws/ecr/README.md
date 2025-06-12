@@ -8,9 +8,9 @@ A simple, configurable ECR (Elastic Container Registry) module designed as a reu
 - 🔍 **Vulnerability scanning** - Scan images on push by default  
 - 🔐 **Secure by default** - AES256 encryption enabled
 - 🏷️ **Flexible tagging** - Mutable or immutable tag support
-- ♻️ **Lifecycle management** - Automatic cleanup of old images
-- 🧹 **Cost optimization** - Configurable image retention policies
+- ♻️ **Lifecycle management** - TODO
 - 🔑 **KMS encryption support** - Optional KMS key encryption
+- 🛡️ **Access control** - Repository-level permissions
 
 ## 🚀 Usage
 
@@ -20,7 +20,7 @@ A simple, configurable ECR (Elastic Container Registry) module designed as a reu
 module "api_registry" {
   source = "../../aws/ecr"
   
-  repository_name = "go-hello-api"
+  repository_name = "my-repository-name"
 }
 ```
 
@@ -30,13 +30,13 @@ module "api_registry" {
 module "prod_registry" {
   source = "../../aws/ecr"
   
-  repository_name      = "go-hello-api"
+  repository_name      = "my-repository-name"
   image_tag_mutability = "IMMUTABLE"
   scan_on_push         = true
   
   tags = {
     Environment = "production"
-    Project     = "go-api"
+    Project     = "my-project"
   }
 }
 ```
@@ -47,14 +47,32 @@ module "prod_registry" {
 module "dev_registry" {
   source = "../../aws/ecr"
   
-  repository_name     = "go-hello-api-dev"
+  repository_name     = "my-repository-name"
   force_delete        = true
-  max_image_count     = 5
-  untagged_image_days = 1
   
   tags = {
     Environment = "development"
-    Project     = "go-api"
+    Project     = "my-project"
+  }
+}
+```
+
+### Registry with CI/CD Permissions
+
+```hcl
+module "cicd_registry" {
+  source = "../../aws/ecr"
+  
+  repository_name           = "my-repository-name"
+  enable_repository_policy  = true
+  allowed_principals = [
+    "arn:aws:iam::123456789012:role/role-1",
+    "arn:aws:iam::123456789012:role/role-2"
+  ]
+  
+  tags = {
+    Environment = "production"
+    Project     = "my-project"
   }
 }
 ```
@@ -65,7 +83,7 @@ module "dev_registry" {
 module "secure_registry" {
   source = "../../aws/ecr"
   
-  repository_name = "go-hello-api"
+  repository_name = "my-repository-name"
   encryption_type = "KMS"
   kms_key_id      = "alias/ecr-encryption-key"
   
@@ -75,30 +93,6 @@ module "secure_registry" {
   }
 }
 ```
-
-## Docker Workflow
-
-After creating the registry, use these commands to build and push:
-
-```bash
-# Get login token
-aws ecr get-login-password --region sa-east-1 | \
-  docker login --username AWS --password-stdin <registry_url>
-
-# Build and tag
-docker build -t go-hello-api .
-docker tag go-hello-api:latest <registry_url>/go-hello-api:latest
-
-# Push to ECR
-docker push <registry_url>/go-hello-api:latest
-```
-
-## Requirements
-
-| Name | Version |
-|------|---------|
-| terraform/opentofu | >= 1.0 |
-| aws | >= 5.0 |
 
 ## Inputs
 
@@ -111,8 +105,9 @@ docker push <registry_url>/go-hello-api:latest
 | encryption_type | The encryption type (AES256 or KMS) | `string` | `"AES256"` | no |
 | kms_key_id | KMS key ID for encryption (when encryption_type is KMS) | `string` | `null` | no |
 | enable_lifecycle_policy | Enable lifecycle policy for image cleanup | `bool` | `true` | no |
-| max_image_count | Maximum number of tagged images to keep | `number` | `10` | no |
-| untagged_image_days | Days to keep untagged images | `number` | `1` | no |
+| enable_repository_policy | Enable repository permissions for cross-account or service access | `bool` | `false` | no |
+| repository_policy | Custom repository permission policy JSON | `string` | `null` | no |
+| allowed_principals | List of AWS principals allowed to access the repository | `list(string)` | `[]` | no |
 | tags | Tags to apply to the ECR repository | `map(string)` | `{}` | no |
 
 ## Outputs
@@ -126,32 +121,11 @@ docker push <registry_url>/go-hello-api:latest
 | image_tag_mutability | The tag mutability setting for the repository |
 | scan_on_push_enabled | Whether images are scanned on push |
 | encryption_type | The encryption type used by the repository |
+| repository_policy | The repository permissions policy if enabled |
 
-## 🔄 Lifecycle Policy
+## Requirements
 
-The module automatically creates a lifecycle policy that:
-
-1. **Keeps the last 10 tagged images** (configurable via `max_image_count`)
-2. **Deletes untagged images after 1 day** (configurable via `untagged_image_days`)
-
-This helps manage storage costs while ensuring you always have recent images available.
-
-## 🏷️ Tag Strategy Recommendations
-
-### For Production:
-- Use `IMMUTABLE` tags to prevent accidental overwrites
-- Tag with semantic versions: `v1.0.0`, `v1.0.1`
-- Keep more images: `max_image_count = 20`
-
-### For Development:
-- Use `MUTABLE` tags for flexibility  
-- Tag with branch names: `main`, `feature-branch`
-- Aggressive cleanup: `max_image_count = 5`
-
-## 🔐 Security Best Practices
-
-- ✅ Vulnerability scanning enabled by default
-- ✅ Encryption at rest with AES256
-- ✅ Optional KMS encryption for compliance
-- ✅ Lifecycle policies prevent storage bloat
-- ✅ IAM policies control access (not managed by this module)
+| Name | Version |
+|------|---------|
+| terraform/opentofu | >= 1.0 |
+| aws | >= 5.0 |

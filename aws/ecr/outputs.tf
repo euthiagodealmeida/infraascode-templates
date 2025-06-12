@@ -32,3 +32,8 @@ output "encryption_type" {
   description = "The encryption type used by the repository"
   value       = aws_ecr_repository.this.encryption_configuration[0].encryption_type
 }
+
+output "repository_policy" {
+  description = "The repository permissions policy if enabled"
+  value       = var.enable_repository_policy ? aws_ecr_repository_policy.this[0].policy : null
+}

@@ -15,12 +15,15 @@ provider "aws" {
 module "lab-ecr" {
   source = "../../aws/ecr"
 
-  repository_name      = var.repository_name
-  image_tag_mutability = var.image_tag_mutability
-  force_delete         = var.force_delete
-  scan_on_push         = var.scan_on_push
-  encryption_type      = var.encryption_type
-  kms_key_id           = var.kms_key_id
+  repository_name         = var.repository_name
+  image_tag_mutability    = var.image_tag_mutability
+  force_delete            = var.force_delete
+  scan_on_push            = var.scan_on_push
+  encryption_type         = var.encryption_type
+  kms_key_id              = var.kms_key_id
   enable_lifecycle_policy = var.enable_lifecycle_policy
-  tags                 = var.tags
+  enable_repository_policy = var.enable_repository_policy
+  allowed_principals       = var.allowed_principals
+
+  tags = var.tags
 }
