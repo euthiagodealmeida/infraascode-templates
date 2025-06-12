@@ -13,7 +13,7 @@ provider "aws" {
 }
 
 module "lab-s3" {
-  source = "../../s3"
+  source = "../../aws/s3"
 
   bucket_name        = var.bucket_name
   force_destroy      = var.force_destroy

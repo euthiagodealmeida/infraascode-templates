@@ -13,7 +13,7 @@ provider "aws" {
 }
 
 module "lab-dynamodb" {
-  source = "../../dynamodb"
+  source = "../../aws/dynamodb"
 
   table_name                   = var.table_name
   billing_mode                 = var.billing_mode
