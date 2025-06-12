@@ -1,0 +1,17 @@
+# Copy this file to terraform.tfvars and update with your values
+
+# Required
+repository_name = "some-repository-name"
+
+# Optional
+# image_tag_mutability = "MUTABLE"  # or "IMMUTABLE"
+# scan_on_push = true
+# force_delete = false
+# encryption_type = "AES256"  # or "KMS"
+# kms_key_id = "alias/ecr-key"  # Required if encryption_type = "KMS"
+
+tags = {
+   Environment = "lab"
+   Project     = "lab-ecr"
+   Owner       = "euthiagodealmeida"
+ }
