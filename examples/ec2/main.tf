@@ -13,7 +13,7 @@ provider "aws" {
 }
 
 module "lab-ec2" {
-  source = "../../ec2"
+  source = "../../aws/ec2"
 
   name               = var.instance_name
   instance_type      = var.instance_type

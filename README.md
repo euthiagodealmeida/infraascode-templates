@@ -21,28 +21,32 @@ A collection of reusable Infrastructure as Code modules for AWS infrastructure. 
 ```
 terraform-templates/
 ├── aws/
+│   ├── dynamodb/               # DynamoDB table module
 │   ├── ec2/                    # EC2 instance module
 │   ├── s3/                     # S3 bucket module
-│   ├── vpc/                    # VPC networking module
-│   └── examples/               # Practical examples
-│       ├── ec2/                # EC2 web server example
-│       ├── s3/                 # S3 bucket example
-│       └── vpc/                # VPC basic example
+│   └── vpc/                    # VPC networking module
+├── examples/                   # Practical examples
+│   ├── dynamodb/               # DynamoDB state lock example
+│   ├── ec2/                    # EC2 web server example
+│   ├── s3/                     # S3 bucket example
+│   └── vpc/                    # VPC basic example
 └── README.md
 ```
 
 ## 🧩 Modules
 
 ### AWS Modules
+- **[DynamoDB](./aws/dynamodb/)** - Simple, configurable DynamoDB tables
 - **[EC2](./aws/ec2/)** - Simple, configurable EC2 instances with security groups
 - **[S3](./aws/s3/)** - S3 buckets with encryption and security defaults
 - **[VPC](./aws/vpc/)** - VPC with auto-calculated subnets and NAT gateway support
 
 ## 📚 Examples
 
-- **[EC2 Simple Web Server](./aws/examples/ec2/)** - Complete web server setup with Apache
-- **[S3 Basic Bucket](./aws/examples/s3/)** - Basic S3 bucket with secure defaults
-- **[VPC Basic Setup](./aws/examples/vpc/)** - VPC with auto-calculated subnets
+- **[DynamoDB Table](./examples/dynamodb/)** - Simple DynamoDB table (could be used for state locking)
+- **[EC2 Simple Web Server](./examples/ec2/)** - Complete web server setup with Apache
+- **[S3 Basic Bucket](./examples/s3/)** - Basic S3 bucket with secure defaults
+- **[VPC Basic Setup](./examples/vpc/)** - VPC with auto-calculated subnets
 
 ## 🚀 Quick Start
 
