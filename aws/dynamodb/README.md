@@ -108,10 +108,3 @@ terraform {
 | billing_mode | The billing mode of the table |
 | point_in_time_recovery_enabled | Whether point-in-time recovery is enabled |
 | server_side_encryption_enabled | Whether server-side encryption is enabled |
-
-## Notes
-
-- **State Locking**: This module is specifically designed for OpenTofu/Terraform state locking with the default `LockID` primary key
-- **Cost Optimization**: Uses pay-per-request billing by default, which is cost-effective for state locking scenarios
-- **Security**: Encryption and point-in-time recovery are enabled by default for production workloads
-- **Simplicity**: Focused on the most common use cases - state locking and basic key-value storage
