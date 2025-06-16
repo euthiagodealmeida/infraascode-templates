@@ -1,0 +1,36 @@
+# Copy this file to terraform.tfvars and update with your values
+
+# Required
+aws_region = "sa-east-1"
+
+alb_name = "lab-alb"
+
+vpc_id     = "vpc-12345678"  # Use your existing VPC ID
+subnet_ids = [               # Use your existing public subnet IDs
+  "subnet-12345678",
+  "subnet-87654321"
+]
+security_group_ids = [       # Use your existing security group IDs
+  "sg-12345678"
+]
+
+target_group_name = "lab-alb-targets"
+
+# Optional
+target_port           = 8080
+health_check_path     = "/health"
+health_check_interval = 30
+health_check_timeout  = 5
+healthy_threshold     = 2
+unhealthy_threshold   = 3
+
+certificate_arn = ""  # Add your ACM certificate ARN for HTTPS
+ssl_policy      = "ELBSecurityPolicy-TLS-1-2-2017-01"
+
+enable_deletion_protection = false
+
+tags = {
+  Environment = "lab"
+  Project     = "lab-alb"
+  Owner       = "euthiagodealmeida"
+}

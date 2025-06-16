@@ -1,0 +1,32 @@
+# Copy this file to terraform.tfvars and update with your values
+
+# Required
+alb_name           = "go-api-alb"
+vpc_id             = "vpc-12345678"
+subnet_ids         = ["subnet-12345678", "subnet-87654321"]  # Public subnets
+security_group_ids = ["sg-12345678"]                         # ALB security group
+
+# Target Group
+target_group_name = "go-api-targets"
+target_port       = 8080
+health_check_path = "/health"
+
+# SSL Configuration (optional)
+# enable_https_listener = true
+# certificate_arn = "arn:aws:acm:region:account:certificate/certificate-id"
+# enable_http_redirect = true
+
+# Optional settings with good defaults
+# enable_deletion_protection = true
+# healthy_threshold = 2
+# health_check_interval = 30
+# health_check_timeout = 5
+# unhealthy_threshold = 3
+# health_check_matcher = "200"
+# ssl_policy = "ELBSecurityPolicy-TLS-1-2-2017-01"
+
+tags = {
+  Environment = "lab"
+  Project     = "go-api"
+  Owner       = "euthiagodealmeida"
+}

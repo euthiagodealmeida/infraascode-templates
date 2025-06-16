@@ -1,0 +1,55 @@
+# Copy this file to terraform.tfvars and update with your values
+
+# Required - AWS Region
+aws_region = "sa-east-1"
+
+name        = "lab-security-group"
+description = "Security group for lab environment"
+
+vpc_id = "vpc-12345678"
+
+# Optional
+allow_http_from_cidr  = ["0.0.0.0/0"]      # Allow HTTP from anywhere
+allow_https_from_cidr = ["0.0.0.0/0"]      # Allow HTTPS from anywhere
+allow_ssh_from_cidr   = ["10.0.0.0/8"]     # Allow SSH from private networks only
+allow_all_outbound = true
+
+ingress_rules = [
+  {
+    from_port   = 8080
+    to_port     = 8080
+    protocol    = "tcp"
+    cidr_blocks = ["10.0.0.0/16"]
+    description = "some port from vpc"
+  },
+  {
+    from_port   = 3306
+    to_port     = 3306
+    protocol    = "tcp"
+    self        = true
+    description = "database port from same sg"
+  }
+]
+
+egress_rules = [
+  {
+    from_port   = 80
+    to_port     = 80
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+    description = "HTTP outbound"
+  },
+  {
+    from_port   = 443
+    to_port     = 443
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+    description = "HTTPS outbound"
+  }
+]
+
+tags = {
+  Environment = "lab"
+  Project     = "lab-security-group"
+  Owner       = "euthiagodealmeida"
+}

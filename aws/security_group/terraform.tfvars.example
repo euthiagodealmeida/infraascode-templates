@@ -1,0 +1,56 @@
+# Security Group Configuration Examples
+
+# Basic configuration
+name        = "my-security-group"
+description = "Security group for my application"
+vpc_id      = "vpc-12345678"
+
+# Custom ingress rules
+ingress_rules = [
+  {
+    from_port   = 8080
+    to_port     = 8080
+    protocol    = "tcp"
+    cidr_blocks = ["10.0.0.0/16"]
+    description = "Application port from VPC"
+  },
+  {
+    from_port                = 22
+    to_port                  = 22
+    protocol                 = "tcp"
+    source_security_group_id = "sg-bastion123"
+    description              = "SSH from bastion host"
+  }
+]
+
+# Custom egress rules
+egress_rules = [
+  {
+    from_port   = 443
+    to_port     = 443
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+    description = "HTTPS to internet"
+  },
+  {
+    from_port   = 5432
+    to_port     = 5432
+    protocol    = "tcp"
+    cidr_blocks = ["10.0.2.0/24"]
+    description = "PostgreSQL to database subnet"
+  }
+]
+
+# Quick common rules (alternative to custom rules above)
+# allow_http_from_cidr  = ["0.0.0.0/0"]
+# allow_https_from_cidr = ["0.0.0.0/0"]
+# allow_ssh_from_cidr   = ["10.0.0.0/8"]
+
+# Allow all outbound traffic (default: true)
+allow_all_outbound = true
+
+# Tags
+tags = {
+  Environment = "lab"
+  Project     = "lab-sg"
+}
