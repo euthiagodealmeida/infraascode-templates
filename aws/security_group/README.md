@@ -120,7 +120,7 @@ module "backend_security_group" {
 
 | Name | Description | Type | Default |
 |------|-------------|------|---------|
-| `name_prefix` | Name prefix for the security group (alternative to name) | `string` | `""` |
+| `name` | Name of the security group | `string` | Required |
 | `description` | Description of the security group | `string` | `"Security group managed by Terraform"` |
 | `ingress_rules` | List of ingress rules | `list(object)` | `[]` |
 | `egress_rules` | List of egress rules | `list(object)` | `[]` |

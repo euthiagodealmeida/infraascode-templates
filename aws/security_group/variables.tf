@@ -3,12 +3,6 @@ variable "name" {
   type        = string
 }
 
-variable "name_prefix" {
-  description = "Name prefix for the security group (alternative to name)"
-  type        = string
-  default     = ""
-}
-
 variable "description" {
   description = "Description of the security group"
   type        = string
