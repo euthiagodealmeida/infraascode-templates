@@ -6,7 +6,8 @@ A collection of reusable Infrastructure as Code modules for AWS infrastructure. 
 
 - **Refactor tagging: it needs to be more consistent**
 - **Create better tfvars.examples (multi examples)**
-- **Create a multi module (ec2+vpc) exameple**
+- **Create a multi module (vpc+ec2+sg+etc) exameple**
+- **Use aws_vpc_security_group_egress_rule and aws_vpc_security_group_ingress_rule instead of aws_security_group_rule**
 
 ## 🎯 Design Philosophy
 
