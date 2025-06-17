@@ -11,7 +11,7 @@ resource "aws_lb" "this" {
     var.tags,
     {
       Name      = var.alb_name
-      ManagedBy = "terraform"
+      ManagedBy = "opentofu"
     }
   )
 }
