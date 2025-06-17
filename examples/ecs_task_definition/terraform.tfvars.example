@@ -1,0 +1,57 @@
+# Copy this file to terraform.tfvars and update with your values
+
+aws_region = "sa-east-1"
+
+# Required
+family = "lab-ecs-task"
+
+# Required
+container_definitions = jsonencode([
+  {
+    name  = "web"
+    image = "nginx:latest"
+    
+    portMappings = [
+      {
+        containerPort = 80
+        protocol      = "tcp"
+      }
+    ]
+    
+    environment = [
+      {
+        name  = "ENV"
+        value = "lab"
+      }
+    ]
+    
+    logConfiguration = {
+      logDriver = "awslogs"
+      options = {
+        "awslogs-group"         = "/ecs/app-logs"
+        "awslogs-region"        = "sa-east-1"
+        "awslogs-stream-prefix" = "ecs"
+      }
+    }
+    
+    essential = true
+  }
+])
+
+# Required
+execution_role_arn = "arn:aws:iam::123456789012:role/ecsTaskExecutionRole"
+task_role_arn     = "arn:aws:iam::123456789012:role/ecsTaskRole"
+
+# Optional
+cpu    = 256   # 0.25 vCPU
+memory = 512   # 512 MB
+
+# Optional
+requires_compatibilities = ["FARGATE"]
+network_mode = "awsvpc"
+
+tags = {
+  Environment = "lab"
+  Project     = "lab-ecs-task-definition"
+  Owner       = "euthiagodealmeida"
+}

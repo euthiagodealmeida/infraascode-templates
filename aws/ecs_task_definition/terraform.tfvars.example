@@ -1,0 +1,71 @@
+# Copy this file to terraform.tfvars and update with your values
+
+# Required
+family = "my-app-task"
+
+# Required
+container_definitions = <<EOF 
+[
+  {
+    name  = "app"
+    image = "nginx:latest"
+    
+    portMappings = [
+      {
+        containerPort = 80
+        protocol      = "tcp"
+      }
+    ]
+    
+    # env vars
+    environment = [
+      {
+        name  = "ENV"
+        value = "production"
+      }
+    ]
+    
+    logConfiguration = {
+      logDriver = "awslogs"
+      options = {
+        "awslogs-group"         = "/ecs/my-app"
+        "awslogs-region"        = "us-east-1"
+        "awslogs-stream-prefix" = "ecs"
+      }
+    }
+    
+    healthCheck = {
+      command     = ["CMD-SHELL", "curl -f http://localhost/ || exit 1"]
+      interval    = 30
+      timeout     = 5
+      retries     = 3
+      startPeriod = 60
+    }
+    
+    essential = true
+  }
+]
+EOF
+
+# Required - IAM role for task execution (pulls images, writes logs)
+execution_role_arn = "arn:aws:iam::123456789012:role/ecsTaskExecutionRole"
+
+# Optional - IAM role for the application (application permissions)
+task_role_arn = "arn:aws:iam::123456789012:role/ecsTaskRole"
+
+# Optional
+cpu    = 256   # 0.25 vCPU
+memory = 512   # 512 MB
+
+# Optional
+requires_compatibilities = ["FARGATE"]
+network_mode = "awsvpc"
+
+# TODO: Volume support not yet implemented
+# volumes = [
+# ]
+
+tags = {
+  Environment = "lab"
+  Project     = "lab-ecs-task-definition"
+}
