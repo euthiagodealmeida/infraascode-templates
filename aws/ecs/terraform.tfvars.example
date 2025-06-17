@@ -1,0 +1,30 @@
+# Copy this file to terraform.tfvars and update with your values
+
+# Required
+cluster_name = "my-ecs-cluster"
+
+# Optional - Capacity Providers (Fargate by default)
+capacity_providers = ["FARGATE"]
+# capacity_providers = ["FARGATE", "FARGATE_SPOT"]  # For cost optimization
+# capacity_providers = ["EC2"]                      # For EC2 instances
+
+# Optional - Capacity Provider Strategy
+default_capacity_provider_strategy = [
+  {
+    capacity_provider = "FARGATE"
+    weight           = 1
+    # base           = 0  # Optional minimum number of tasks
+  }
+]
+
+# Optional - CloudWatch Container Insights
+enable_container_insights = false
+
+# Optional - ECS Exec for debugging
+enable_execute_command = false
+
+# Optional - Tags
+tags = {
+  Environment = "dev"
+  Project     = "my-project"
+}
