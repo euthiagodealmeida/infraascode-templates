@@ -1,0 +1,60 @@
+# Copy this file to terraform.tfvars and update with your values
+
+# Required
+name = "my-iam-role"
+
+# Required
+assume_role_policy = jsonencode({
+  Version = "2012-10-17"
+  Statement = [
+    {
+      Effect = "Allow"
+      Principal = {
+        Service = "ecs-tasks.amazonaws.com"
+      }
+      Action = "sts:AssumeRole"
+    }
+  ]
+})
+
+# Optional
+description = "IAM role for my application"
+
+# Policy Attachments
+aws_managed_policy_arns = [
+  "arn:aws:iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy"
+]
+
+customer_managed_policy_arns = [
+  # "arn:aws:iam::123456789012:policy/my-custom-policy"
+]
+
+# Inline Policies
+inline_policies = {
+  # app_permissions = {
+  #   policy = jsonencode({
+  #     Version = "2012-10-17"
+  #     Statement = [
+  #       {
+  #         Effect = "Allow"
+  #         Action = [
+  #           "logs:CreateLogStream",
+  #           "logs:PutLogEvents"
+  #         ]
+  #         Resource = "arn:aws:logs:*:*:*"
+  #       }
+  #     ]
+  #   })
+  # }
+}
+
+# Optional
+max_session_duration = 3600
+path = "/"
+# permissions_boundary = "arn:aws:iam::123456789012:policy/permissions-boundary"
+force_detach_policies = false
+
+tags = {
+  Environment = "dev"
+  Project     = "my-project"
+}
