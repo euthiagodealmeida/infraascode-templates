@@ -1,0 +1,30 @@
+# Copy this file to terraform.tfvars and update with your values
+
+aws_region = "us-east-1"
+
+# Required
+cluster_name = "my-ecs-cluster"
+
+# Optional
+capacity_providers = ["FARGATE"]
+# capacity_providers = ["FARGATE", "FARGATE_SPOT"]  # For cost optimization
+# capacity_providers = ["EC2"]                      # For EC2 instances
+
+# Optional
+default_capacity_provider_strategy = [
+  {
+    capacity_provider = "FARGATE"
+    weight           = 1
+    # base           = 0  # Optional minimum number of tasks
+  }
+]
+
+# Optional
+enable_container_insights = false
+enable_execute_command    = false
+
+tags = {
+  Environment = "development"
+  Project     = "my-app"
+  Owner       = "my-team"
+}
