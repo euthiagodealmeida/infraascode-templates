@@ -1,0 +1,44 @@
+# ECS Service Configuration
+service_name            = "my-app-service"
+cluster_id              = "my-ecs-cluster"
+task_definition_arn     = "arn:aws:ecs:us-west-2:123456789012:task-definition/my-app:1"
+desired_count           = 2
+launch_type             = "FARGATE"
+
+# Platform and deployment configuration
+platform_version      = "LATEST"  # Use latest Fargate platform version
+force_new_deployment   = false     # Set to true to force deployment
+propagate_tags         = "SERVICE" # Propagate tags from service to tasks
+
+# Network Configuration (required for Fargate)
+subnet_ids         = ["subnet-12345678", "subnet-87654321"]
+security_group_ids = ["sg-12345678"]
+assign_public_ip   = false
+
+# Load Balancer Configuration (optional)
+load_balancer_config = {
+  target_group_arn = "arn:aws:elasticloadbalancing:us-west-2:123456789012:targetgroup/my-targets/1234567890123456"
+  container_name   = "web"
+  container_port   = 80
+}
+
+# Service Discovery Configuration (optional)
+# service_registry_arn = "arn:aws:servicediscovery:us-west-2:123456789012:service/srv-xxxxxxxxx"
+
+# Deployment Configuration
+deployment_maximum_percent         = 200
+deployment_minimum_healthy_percent = 100
+
+# Health Check Configuration
+health_check_grace_period_seconds = 60
+
+# Additional Configuration
+enable_execute_command = true
+wait_for_steady_state  = false
+
+# Tags
+tags = {
+  Environment = "production"
+  Project     = "my-app"
+  Team        = "backend"
+}
